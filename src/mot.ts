@@ -46,7 +46,6 @@ export class Mot {
     this.numDots = config.numDots;
     this.straightProb = config.straightProb;
     this.angSD = config.angSD;
-    console.log(trialOrder);
     this.numAttendDots = trialOrder; //number of dots to attend to per trial (obtained from MOT/code.php)
 
     /**
@@ -62,10 +61,10 @@ export class Mot {
     /**
      * Timing variables
      */
-    this.speed = 16; //length of time for each frame (ms/frame)
-    this.tCue = 2000; //duration of presentation of cue (ms)
-    this.tMove = 4000; //duration of dots moving (after the cue period) before asking about probed dot (ms)
-    this.dotVel = 5; //velocity of dots in degrees/sec
+    this.speed = config.speed; //length of time for each frame (ms/frame)
+    this.tCue = config.durationCue; //duration of presentation of cue (ms)
+    this.tMove = config.durationMove; //duration of dots moving (after the cue period) before asking about probed dot (ms)
+    this.dotVel = config.velocity; //velocity of dots in degrees/sec
     this.vel = Math.ceil(this.dotVel * pxPerDeg / (1 / (this.speed / 1000))); //velocity of dots in pixels/frame
     this.startWait = 0; //keeps track of timer start
 
