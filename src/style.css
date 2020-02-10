@@ -1,0 +1,94 @@
+/* style.css:
+ * Makes additional style modifications to index.php
+ */
+
+html, body {
+    margin: 0;
+    color: white;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: black;
+    text-align: center;
+    color: white;
+}
+
+.ui-widget-content {
+color: white;
+}
+
+#content {
+background: rgb(128, 128, 128);
+width: 50%;
+margin: 1rem auto;
+padding: 1em 2em;
+overflow: auto;
+}
+
+#error {
+color: #FFCC00;
+padding-bottom: 0.5em;
+font-size: 0.8em;
+}
+
+.ui-widget-content a {
+text-decoration: none;
+font-weight: bold;
+}
+
+a:hover {
+color: white;
+}
+
+.ui-button {
+font-size: 16px;
+}
+
+.small-text {
+font-size: 0.8em;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+}
+
+#preexpt {
+    max-width: 1024px;
+    margin: 6rem auto 0;
+}
+
+#instructions {
+    font-size:1em;
+    margin: 0;
+    text-align: left;
+    height: 100px;
+}
+
+#backButton, #forwardButton {
+    padding: 0;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+#content {
+    padding-bottom: 0.5em;
+    width: 50%;
+    margin: auto;
+}
+
+#reminder {
+    font-size: 0.8em;
+    text-align: left;
+}
+
+#reminderButton {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+}
+
+.highlight {
+    color: #59E01B;
+    font-weight: bold;
+}

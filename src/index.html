@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multiple Object Tracking</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- JS libraries -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+
+    <!-- This is code that applies a seed to the random number generator -->
+    <script type="text/javascript" src="/public/random-seed.js"></script>
+</head>
+<body>
+
+    <!-- the reminder button is present during the practice trials so that the subject can click on it if they
+    want to bring up the instructions at any point after they have been initially explained. -->
+    <button id="reminderButton">Information</button>
+
+    <!-- These are the instructions that display in a pop-up dialog window when the subject clicks on the reminder button -->
+    <div id="reminder">
+        Press the <strong>space bar</strong> to start the trial.
+        <br/><br/>
+        Pay attention to the sad faces and remember which ones they are once they become happy faces.
+        When one of the faces changes into a question mark, respond with one of the following keys:
+        <br/><br/>
+        <strong>B key</strong> - indicates you think this face started as a blue face<br/>
+        <strong>Y key</strong> - indicates you think this face was always a yellow face<br/>
+    </div>
+
+    <!-- This message appears before the subject starts the full task. It points them to the practice trials if they'd like to redo them, and also
+    gives them a reminder to keep their browser fullscreened during the task. -->
+    <div id="preexpt">
+        <p>If you need to review the instructions, you can click on the icon in the bottom right corner or <a href=./practice.php>return to the tutorial</a>.</p>
+        <p>The experience works better in fullscreen. When you click on the continue button, your browser will automatically go in fullscreen mode.</p>
+        <p>You can quit fullscreen at any time by using the escape key or by clicking on the close button that will appear when you move your mouse cursor at the top of the screen.</p>
+
+        <!-- button for confirming they read the above message -->
+        <button id="cButton">Continue</button>
+    </div>
+
+    <div>
+        <!-- HTML5 canvas which displays the task -->
+        <canvas id="exptCanvas">
+            Your browser does not support the canvas element.
+        </canvas>
+    </div>
+
+    <!-- message that appears after the subject is done with the task, suggests they complete the UFOV task if they haven't already -->
+    <div id="postexpt">
+        <p id="postexpt-result"></p>
+        <p>Thank you for participating!</p>
+        <p>
+            If you haven't completed the Useful Field of View task yet, you can start it by
+            <a href="../UFOV/practice.php">clicking here.</a>
+        </p>
+    </div>
+
+    <script src="bundle.js"></script>
+</body>
+</html>
