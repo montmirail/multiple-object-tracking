@@ -33,8 +33,6 @@ export const getCalibration = (screenSize: number = 24) => {
   const date = new Date();
   const localSec = Math.round(date.getTime() / 1000) - date.getTimezoneOffset() * 60;
 
-  debugger;
-
   return {
     pxWidth: screen.width, //screen width in pixels
     pxHeight: screen.height, //screen height in pixels

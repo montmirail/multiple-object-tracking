@@ -38,16 +38,17 @@ export class Mot {
   angSD: number;
   numAttendDots: Array<number>;
   startTime: number;
+  pxPerDeg: number;
 
-  constructor(config: Config, pxPerDeg: number) {
+  constructor(config: Config, pxPerDeg: number, dots?: number[]) {
     /**
      * Value from config
      */
+    this.pxPerDeg = pxPerDeg;
     this.numDots = config.numDots;
     this.straightProb = config.straightProb;
     this.angSD = config.angSD;
-    console.log(trialOrder);
-    this.numAttendDots = trialOrder; //number of dots to attend to per trial (obtained from MOT/code.php)
+    this.numAttendDots = dots || trialOrder; //number of dots to attend to per trial (obtained from MOT/code.php)
 
     /**
      * Trial variables
@@ -72,7 +73,7 @@ export class Mot {
     /**
      * Image config
      */
-    this.dotRad = Math.round(0.4 * pxPerDeg); //dot radius (deg*ppd)
+    this.dotRad = Math.round(0.4 * pxPerDeg); //dot radius (deg * ppd)
     this.imageSize = this.dotRad * 2; //dot size (diameter, in pixels)
 
     /**

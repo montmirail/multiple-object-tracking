@@ -12,12 +12,8 @@ import {submitResults} from './utils/submit-results';
 /**
  * This experience is calibrated to work on Viewpixx screen of 24 inch
  */
-const monitorSize = 24;
-
-const { pxPerDeg } = getCalibration(monitorSize);
-
-const mot = new Mot(config, pxPerDeg);
-const ui = new Ui(mot);
+let monitorSize = 24;
+let mot: Mot, ui: Ui, pxPerDeg: number;
 
 // *********************** DRAWING CONTROL ************************ //
 
@@ -35,10 +31,25 @@ const draw = () => {
   updateFrame();
 };
 
-const init = () => {
+interface Options {
+  pxPerDeg?: number;
+  dots?: number[];
+}
+
+export const init = (options: Options) => {
   const continueButton = $('#cButton');
   const reminderButton = $('#reminderButton');
   const reminderDialog = $('#reminder');
+
+  if (!options.pxPerDeg) {
+    const calibration = getCalibration(monitorSize);
+    pxPerDeg = calibration.pxPerDeg
+  } else {
+    pxPerDeg = options.pxPerDeg;
+  }
+
+  mot = new Mot(config, pxPerDeg, options.dots);
+  ui = new Ui(mot);
 
   //hide content before subject starts
   $('#postexpt').hide();
@@ -62,7 +73,9 @@ const init = () => {
    */
   // @ts-ignore
   reminderButton.button({
-    icons: {primary: 'ui-icon-info'},
+    icons: {
+      primary: 'ui-icon-info',
+    },
     text: false,
   });
 
@@ -100,8 +113,11 @@ const init = () => {
 //At each frame, the frame is redrawn based on the current state
 function updateFrame() {
   //check if dialog window for instructions is open
-  // @ts-ignore
-  mot.dialogOpen = !!$('#reminder').dialog('isOpen');
+  if (mot) {
+    // @ts-ignore
+    mot.dialogOpen = !!$('#reminder').dialog('isOpen');
+  }
+
 
   if (mot.state === State.START || mot.state === State.FIX) { //start of task or start of trial
     if (mot.stateChange) {
@@ -169,7 +185,7 @@ function updateFrame() {
       if (mot.done) { //if this was the last trial, then take the participant to the end of the task
         mot.state = State.DONE;
 
-        submitResults(mot, ui, pxPerDeg)
+        submitResults(mot, ui, mot.pxPerDeg)
           .then(() => {
             $('#exptCanvas').hide();
             const percentCorrect = Math.round(mot.blockCorrect / mot.trialsPerBlock * 100);
@@ -235,7 +251,7 @@ export const keyboardResponse = (event: KeyboardEvent) => {
 };
 
 
-// *********************** INITIALIZATION ************************** //
-
-//wait until the HTML5 page is ready before setting up all the widgets
-init();
+// // *********************** INITIALIZATION ************************** //
+//
+// //wait until the HTML5 page is ready before setting up all the widgets
+// init();

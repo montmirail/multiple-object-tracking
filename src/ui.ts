@@ -42,7 +42,10 @@ export class Ui {
 
     //setting up the stimuli images
     const baseUrl = '/public';
-    const images = [happyFace, sadFace, query];
+    const images = [
+      './dist/assets/images/happy_face.png',
+      './dist/assets/images/sad_face.png',
+      './dist/assets/images/query.png'];
     this.sprites = images.map(src => {
       const image = new Image();
       image.src = src;
@@ -100,8 +103,6 @@ export class Ui {
 
       this.drawFix(); //draw fixation point
 
-      console.log('Init State');
-
       if (this.mot.initState) {
 
         //it's the initialization state, so set up all the dots
@@ -124,8 +125,6 @@ export class Ui {
             let r2 = Math.pow(this.dotPosX[this.mot.trial][i] - this.cx, 2) + Math.pow(this.dotPosY[this.mot.trial][i] - this.cy, 2);
             if (r2 < Math.pow(this.mot.minFix, 2) || r2 > Math.pow(this.mot.maxFix - this.mot.minEdge, 2)) {
               restart = 1;
-
-              console.log('This one');
 
               continue;
             }

@@ -25,6 +25,8 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
+    library: 'MOT',
+    libraryTarget: 'var',
   },
   devtool: 'sourcemap',
 };
