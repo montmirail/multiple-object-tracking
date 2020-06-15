@@ -41,11 +41,13 @@ export class Ui {
     this.cy = Math.round(this.canvas.height / 2); //get center y coordinate of canvas
 
     //setting up the stimuli images
-    const baseUrl = '/public';
     const images = [
       './dist/assets/images/happy_face.png',
       './dist/assets/images/sad_face.png',
       './dist/assets/images/query.png'];
+    // const baseUrl = './assets/images/';
+    // const images = ['happy_face.png', 'sad_face.png', 'query.png'];
+    // // const images = [happyFace, sadFace, query];
     this.sprites = images.map(src => {
       const image = new Image();
       image.src = src;
